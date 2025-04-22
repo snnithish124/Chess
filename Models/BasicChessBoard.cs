@@ -1,6 +1,7 @@
 ﻿using Chess.Utils;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,6 +53,16 @@ namespace Chess.Models
         public int GetCol()
         {
             return col;
+        }
+        public bool IsInsideBoard(int rowPos, int colPos)
+        {
+            
+            return rowPos >= 0 && rowPos < row && col >= 0 && colPos < col;
+            
+        }
+        public string ToPosition(int rowPos, int colPos)
+        {
+            return $"{(char)('A' + colPos)}{row - rowPos}";
         }
     }
 }

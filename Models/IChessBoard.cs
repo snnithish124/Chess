@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Chess.Models
 {
-    internal interface IChessBoard
+    public interface IChessBoard
     {
         void ResetBoard();
         void CleanBoard();
         int GetRow();
         int GetCol();
+        bool IsInsideBoard(int rowPos, int colPos);
+        string ToPosition(int r, int c);
     }
 }
