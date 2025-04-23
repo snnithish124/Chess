@@ -5,10 +5,8 @@
  2.Use the exe provided to directly run the application portably.
 
  ## Details
- --------------------------------------------------------------------------------------<br>
  This App will give the possible moves that a piece can take in a chess board.<br>
  You can give the piece and its current position to get the details.<br>
 Enter Position(Ex: Pawn, H2) or Enter Exit:<br>
 Example: pawn,h2<br>
 Output: ["H3"]<br>
- --------------------------------------------------------------------------------------<br>
