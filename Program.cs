@@ -1,19 +1,56 @@
 ﻿using Chess.Models;
+using Chess.Models.Pieces;
 using Chess.Utils;
-using Microsoft.Extensions.DependencyInjection;
 
-var services = new ServiceCollection();
+var inputString = string.Empty;
 
-// Step 2: Register services
-//services.AddSingleton<IMessageService, ConsoleMessageService>();
+do
+{
+    try
+    {
+        Console.Write("Enter Position(Ex: Pawn, H2) or Enter Exit: ");
+        inputString = Console.ReadLine();
+        if (inputString.ToLower() == "exit") break; //Checking as case insensitive format
 
-// Step 3: Build service provider
-var serviceProvider = services.BuildServiceProvider();
+        var input = inputString.Split(',');
+        if (input.Length != 2)
+        {
+            Console.WriteLine("Input is not in the format, Give as comma separated");
+            continue;
+        }
 
-// Step 4: Use service
-//var messageService = serviceProvider.GetRequiredService<IMessageService>();
-//messageService.Send("Hello from DI in Console App!"); Console.WriteLine("Hello, World!");
-IChessBoard board = new BasicChessBoard();
+        IChessBoard board = new BasicChessBoard();
+        var ChessPiece = input[0].Trim().ToLower();
 
-board.print();
-Console.ReadLine();
+        Piece piece = null;
+        if (ChessPiece == "king")
+        {
+            piece = new King(input[1].Trim().ToUpper());
+        }
+        else if (ChessPiece == "pawn")
+        {
+            piece = new Pawn(input[1].Trim().ToUpper());
+        }
+        else if (ChessPiece == "queen")
+        {
+            piece = new Queen(input[1].Trim().ToUpper());
+        }
+        else
+        {
+            Console.WriteLine("Given Piece Not Found");
+            continue;
+        }
+
+        if (board.IsInsideBoard(piece.curRow, piece.curCol))
+            piece.GetPossibleMoves(board).print();
+        else
+            Console.WriteLine("Piece Is Placed Outside The Board");
+    }
+    catch(Exception e)
+    {
+        Console.WriteLine(e.Message);
+    }
+
+}
+while (true);
+
