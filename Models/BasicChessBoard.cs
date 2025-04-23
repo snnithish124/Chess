@@ -1,6 +1,7 @@
 ﻿using Chess.Utils;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -10,40 +11,25 @@ namespace Chess.Models
 {
     internal class BasicChessBoard : IChessBoard
     {
-        public string[,] board { get; set; }
         private int row { get; set; }
         private int col { get; set; }
+        private (int row, int col)[] directions = new (int, int)[]
+          {
+                (-1,  0), // up
+                ( 1,  0), // down
+                ( 0, -1), // left
+                ( 0,  1), // right
+                (-1, -1), // upLeft
+                (-1,  1), // upRight
+                ( 1, -1), // downLeft
+                ( 1,  1)  // downRight
+          };
         public BasicChessBoard() 
         {
             row = 8;
             col = 8;
-            board = new string[row,col];
-            MarkCells();
         }
-        public void CleanBoard()
-        {
-            board = new string[row,col];
-        }
-
-        public void ResetBoard()
-        {
-            MarkCells();
-        }
-
-        private void MarkCells()
-        {
-            int curRow = row - 1;
-            while(curRow >= 0)
-            {
-                for(int i = 0;i < col; i++)
-                {
-                    var curChar = (char)('A' + i);
-                    board[curRow, i] = $"{curChar}{curRow + 1}";
-                }
-                curRow--;
-            }
-        }
-
+      
         public int GetRow()
         {
             return row;
@@ -62,6 +48,10 @@ namespace Chess.Models
         public string ToPosition(int rowPos, int colPos)
         {
             return $"{(char)(('A' + colPos) - 1)}{ rowPos}";
+        }
+        public (int row, int col)[] GetAllDirections()
+        {
+            return directions;
         }
     }
 }

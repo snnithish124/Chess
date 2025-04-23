@@ -8,11 +8,11 @@ namespace Chess.Models
 {
     public interface IChessBoard
     {
-        void ResetBoard();
-        void CleanBoard();
+
         int GetRow();
         int GetCol();
         bool IsInsideBoard(int rowPos, int colPos);
         string ToPosition(int r, int c);
+        (int row, int col)[] GetAllDirections();
     }
 }
