@@ -12,7 +12,6 @@ namespace Chess.Models.Pieces
         public PieceType Type { get; set; }
         public readonly int curRow;
         public readonly int curCol;
-        public Piece() { }
         public Piece(string position, PieceType type)
         {
             Position = position;
