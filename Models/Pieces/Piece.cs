@@ -10,10 +10,15 @@ namespace Chess.Models.Pieces
     {
         public string Position { get; set; }
         public PieceType Type { get; set; }
+        public readonly int curRow;
+        public readonly int curCol;
+        public Piece() { }
         public Piece(string position, PieceType type)
         {
             Position = position;
             Type = type;
+            curRow = Position[1] - '0';
+            curCol = (Position[0] - 'A') + 1;
         }
 
         public abstract List<string> GetPossibleMoves(IChessBoard board);
