@@ -42,7 +42,6 @@ namespace Chess.Models
                 }
                 curRow--;
             }
-            board.print();
         }
 
         public int GetRow()
@@ -57,12 +56,12 @@ namespace Chess.Models
         public bool IsInsideBoard(int rowPos, int colPos)
         {
             
-            return rowPos >= 0 && rowPos < row && col >= 0 && colPos < col;
+            return rowPos > 0 && rowPos <= row && colPos > 0 && colPos <= col;
             
         }
         public string ToPosition(int rowPos, int colPos)
         {
-            return $"{(char)('A' + colPos)}{row - rowPos}";
+            return $"{(char)(('A' + colPos) - 1)}{ rowPos}";
         }
     }
 }
