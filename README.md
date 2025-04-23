@@ -2,7 +2,7 @@
 # Chess
 ## How To Run - There are two ways to run this application as below.
  1.Load this project to Visual Studio and You can just run it.<br>
- 2.Use the exe provided to directly run the application portably.
+ 2.Use the exe provided in the "Release" to directly run the application portably.
 
  ## Details
  This App will give the possible moves that a piece can take in a chess board.<br>
